@@ -1,35 +1,27 @@
 import { Client } from "./client";
 
 export abstract class Account {
-    protected _idAccount: number;                 // id da conta
-    protected _client: Client;                    // cliente
-    protected _accountNumber: number;             // número da conta
-    protected _verificationDigit: number;         // dígito verificador
-    protected _agencyNumber: number;              // número da agência
-    protected _bankName: string;                  // nome do banco
-    protected _bankCode: number;                  // código do banco
-    protected _balance: number;                   // saldo
-    protected _openingDate: Date;                 // data de abertura
+              protected _idAccount: number;                          // id da conta
+    protected _client: Client;                                       // cliente
+    protected _accountNumber: number;                                // número da conta
+    protected _verificationDigit: number;                            // dígito verificador
+    protected readonly _agencyNumber: number = 2;                    // número da agência
+    protected readonly _bankName: string = 'Banco Master';           // nome do banco
+    protected readonly _bankCode: number = 243;                      // código do banco
+    protected _balance: number = 0;                                  // saldo
+    protected _openingDate: Date;                                    // data de abertura
 
         constructor(
             idAccount: number,
             client: Client,
             accountNumber: number,
-            agencyNumber: number,
             verificationDigit: number,
-            bankName: string,
-            bankCode: number,
-            balance: number,
             openingDate: Date
         ) {
             this.idAccount = idAccount;
             this.client = client;
             this.accountNumber = accountNumber;
-            this.agencyNumber = agencyNumber;
             this.verificationDigit = verificationDigit;
-            this.bankName = bankName;
-            this.bankCode = bankCode;
-            this._balance = balance;
             this._openingDate = openingDate;
         }
 
@@ -66,25 +58,16 @@ export abstract class Account {
     }
 
     // agencyNumber
-    public set agencyNumber(value: number) {
-        this._agencyNumber = value;
-    }
     public get agencyNumber(): number {
         return this._agencyNumber;
     }
 
     // bankName
-    public set bankName(value: string) {
-        this._bankName = value;
-    }
     public get bankName(): string {
         return this._bankName;
     }
 
     // bankCode
-    public set bankCode(value: number) {
-        this._bankCode = value;
-    }
     public get bankCode(): number {
         return this._bankCode;
     }
@@ -107,4 +90,9 @@ export abstract class Account {
         return `${day}/${month}/${year}`;
     }
 
+    // Classe abstrada para depósito
+    protected abstract deposit(amount: number): void;
+
+    // Classe abstrata para saque
+    protected abstract withdraw(amount: number): void;
 }
