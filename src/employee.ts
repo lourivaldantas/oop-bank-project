@@ -1,6 +1,6 @@
-import { Usuario } from "./usuario";
+import { User } from "./user";
 
-export class Funcionario extends Usuario {
+export class Employee extends User {
 
     constructor(
         id: number,
@@ -8,7 +8,7 @@ export class Funcionario extends Usuario {
         name: string,
         birthday: Date,
         email: string,
-        phone: number,
+        phone: string,
     ) {
         super(id, cpf, name, birthday, email, phone);
     }

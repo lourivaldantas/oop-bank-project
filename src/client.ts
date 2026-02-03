@@ -1,6 +1,6 @@
-import { Usuario } from "./usuario";
+import { User } from "./user";
 
-export class Cliente extends Usuario {
+export class Client extends User {
     private _grossIncome: number
 
         constructor(
@@ -9,18 +9,21 @@ export class Cliente extends Usuario {
             name: string,
             birthday: Date,
             email: string,
-            phone: number,
+            phone: string,
             grossIncome: number,
         ) {
             super(id, cpf, name, birthday, email, phone);
             this.grossIncome = grossIncome;
         }
 
-    // Gross income
-    set grossIncome(value: number) {
+    // grossIncome
+    public set grossIncome(value: number) {
+        if (value < 0) {
+            throw new Error('A renda bruta não pode ser menor que zero')
+        }
         this._grossIncome = value;
     }
-    get grossIncome() {
+    public get grossIncome(): number {
         return this._grossIncome;
     }
 }
