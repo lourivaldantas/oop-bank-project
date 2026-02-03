@@ -1,7 +1,7 @@
 import { Client } from "./client";
 
 export abstract class Account {
-              protected _idAccount: number;                          // id da conta
+    protected _idAccount: number;                                    // id da conta
     protected _client: Client;                                       // cliente
     protected _accountNumber: number;                                // número da conta
     protected _verificationDigit: number;                            // dígito verificador
@@ -90,9 +90,29 @@ export abstract class Account {
         return `${day}/${month}/${year}`;
     }
 
-    // Classe abstrada para depósito
-    protected abstract deposit(amount: number): void;
+   // Lógica básica para depósito
+    public deposit(amount: number): boolean {
+        if (amount <= 0) return false;
+        this._balance += amount;
+        return true;
+    }
 
-    // Classe abstrata para saque
-    protected abstract withdraw(amount: number): void;
+    // Lógica básica para saque
+    public withdraw(amount: number): boolean {
+        if (amount <= 0 || amount > this._balance) return false;
+        this._balance -= amount;
+        return true;
+    }
+
+    // Lógica padrão de transferência entre contas
+    public transfer(amount: number, targetAccount: Account): boolean {
+        const withdrawn = this.withdraw(amount);
+        if (!withdrawn) return false;
+        const deposited = targetAccount.deposit(amount);
+        if (!deposited) {
+            this._balance += amount; // rollback
+            return false;
+        }
+        return true;
+    }
 }
