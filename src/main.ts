@@ -12,7 +12,7 @@ async function main() {
     const yuri = new Employee(1, "11122233344", "Yuri Fábio", new Date(1935, 1, 1), "yuri@banco.com", "977777777");
 
     // Abrir contas usando o funcionário
-    const toffiliChecking = await yuri.openAccountCSV(toffili, 1000, "checking");
+    const toffiliChecking = await yuri.openAccountCSV(lourival, 1000, "checking");
     const brunoSavings = await yuri.openAccountCSV(bruno, 500, "savings");
 
     console.log("Contas criadas:");
@@ -38,7 +38,7 @@ async function main() {
 
     // Tentativa de empréstimo
     const loanAmount = 1500;
-    if (yuri.performLoan(toffili, toffiliChecking, loanAmount)) {
+    if (yuri.performLoan(lourival, toffiliChecking, loanAmount)) {
         console.log(`Empréstimo de ${loanAmount} autorizado para Toffili`);
     } else {
         console.log(`Empréstimo de ${loanAmount} negado para Toffili`);
