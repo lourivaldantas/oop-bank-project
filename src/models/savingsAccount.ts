@@ -15,7 +15,7 @@ export class SavingsAccount extends Account {
             super(idAccount, client, accountNumber, verificationDigit, openingDate)
         }
 
-    // Override withdraw to limit monthly withdrawals
+    // Substituir a opção de saque para limitar os saques mensais
     public withdraw(amount: number): boolean {
         if (this._withdrawalsThisMonth >= this._withdrawalLimit) {
             return false; // exceeded withdrawal limit
@@ -29,12 +29,12 @@ export class SavingsAccount extends Account {
         return success;
     }
 
-    // Apply monthly interest to the balance
+    // Aplicar juros mensais ao saldo
     public applyMonthlyInterest(): void {
         this._balance += this._balance * this._monthlyInterestRate;
     }
 
-    // Reset monthly withdrawal count (to be called at the start of a new month)
+    // Reiniciar a contagem de saques mensais (a ser executada no início de um novo mês)
     public resetMonthlyWithdrawals(): void {
         this._withdrawalsThisMonth = 0;
     }

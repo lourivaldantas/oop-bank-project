@@ -17,7 +17,7 @@ export class CheckingAccount extends Account {
         }
         }
     
-    // Overrides withdraw to allow using overdraft
+    // Substitui saques para permitir o uso de cheque especial
     public withdraw(amount: number): boolean {
         if (amount <= 0) return false;
         if (amount > this._balance + this._overdraftLimit) return false;
@@ -25,7 +25,7 @@ export class CheckingAccount extends Account {
         return true;
     }
 
-    // Overrides transfer to consider overdraft
+    // Substitui a transferência para considerar o descoberto
     public transfer(amount: number, targetAccount: Account): boolean {
         if (amount <= 0) return false;
         if (amount > this._balance + this._overdraftLimit) return false;
@@ -33,7 +33,7 @@ export class CheckingAccount extends Account {
         return success;
     }
 
-    // overdraftLimit
+    //  Limite de cheque especial
     public get overdraftLimit(): number {
         return this._overdraftLimit;
     }

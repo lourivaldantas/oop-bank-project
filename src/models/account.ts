@@ -6,7 +6,7 @@ export abstract class Account {
     protected _accountNumber: number;                                // número da conta
     protected _verificationDigit: number;                            // dígito verificador
     protected readonly _agencyNumber: number = 2;                    // número da agência
-    protected readonly _bankName: string = 'Banco Master';           // nome do banco
+    protected readonly _bankName: string = 'Banco IFRN';             // nome do banco
     protected readonly _bankCode: number = 243;                      // código do banco
     protected _balance: number = 0;                                  // saldo
     protected _openingDate: Date;                                    // data de abertura

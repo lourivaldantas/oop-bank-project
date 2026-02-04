@@ -5,7 +5,7 @@ import { SavingsAccount } from "./models/savingsAccount";
 
 async function main() {
     // Criar clientes
-    const toffili = new Client(1, "12345678901", "Dias Toffili", new Date(1990, 5, 15), "toffili@email.com", "999999999", 5000);
+    const toffili = new Client(1, "12345678901", "Lourival Dantas", new Date(1970, 11, 9), "lourival@email.com", "999999999", 5000);
     const bruno = new Client(2, "98765432100", "Bruno Gomes", new Date(2002, 10, 20), "bruno@email.com", "988888888", 3000);
 
     // Criar funcionário do banco
